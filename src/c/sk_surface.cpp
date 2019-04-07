@@ -170,6 +170,8 @@ int sk_image_get_height(const sk_image_t* cimage) {
 
 uint32_t sk_image_get_unique_id(const sk_image_t* cimage) {
     return AsImage(cimage)->uniqueID();
+}
+
 sk_colortype_t sk_colortype_get_default_8888() {
     return (sk_colortype_t)SkColorType::kN32_SkColorType;
 }

@@ -58,17 +58,18 @@ typedef enum {
 } sk_cliptype_t;
 
 typedef enum {
-    UNKNOWN_SK_COLORTYPE = 0,
-    ALPHA_8_SK_COLORTYPE,
-    RGB_565_SK_COLORTYPE,
-    ARGB_4444_SK_COLORTYPE,
-    RGBA_8888_SK_COLORTYPE,
-    RGB_888X_SK_COLORTYPE,
-    BGRA_8888_SK_COLORTYPE,
-    RGBA_1010102_SK_COLORTYPE,
-    RGB_101010X_SK_COLORTYPE,
-    GRAY_8_SK_COLORTYPE,
-    RGBA_F16_SK_COLORTYPE,
+    UNKNOWN_SK_COLORTYPE = 0,    //!< uninitialized
+    ALPHA_8_SK_COLORTYPE,      //!< pixel with alpha in 8-bit byte
+    RGB_565_SK_COLORTYPE,      //!< pixel with 5 bits red, 6 bits green, 5 bits blue, in 16-bit word
+    ARGB_4444_SK_COLORTYPE,    //!< pixel with 4 bits for alpha, red, green, blue; in 16-bit word
+    RGBA_8888_SK_COLORTYPE,    //!< pixel with 8 bits for red, green, blue, alpha; in 32-bit word
+    RGB_888X_SK_COLORTYPE,     //!< pixel with 8 bits each for red, green, blue; in 32-bit word
+    BGRA_8888_SK_COLORTYPE,    //!< pixel with 8 bits for blue, green, red, alpha; in 32-bit word
+    RGBA_1010102_SK_COLORTYPE,  //!< 10 bits for red, green, blue; 2 bits for alpha; in 32-bit word
+    RGB_101010X_SK_COLORTYPE,   //!< pixel with 10 bits each for red, green, blue; in 32-bit word
+    GRAY_8_SK_COLORTYPE,         //!< pixel with grayscale level in 8-bit byte
+    RGBA_F16_SK_COLORTYPE,  //!< pixel with half floats for red, green, blue, alpha; in 64-bit word
+    RGBA_F32_SK_COLORTYPE,  //!< pixel using C float for red, green, blue, alpha; in 128-bit word
 } sk_colortype_t;
 
 typedef enum {
@@ -90,11 +91,10 @@ typedef enum {
     USE_DEVICE_INDEPENDENT_FONTS_SK_SURFACE_PROPS_FLAGS = 1 << 0,
 } sk_surfaceprops_flags_t;
 
-typedef struct sk_surfaceprops_t sk_surfaceprops_t;
-
 typedef struct {
-	sk_pixelgeometry_t pixelGeometry;
-} s
+    sk_pixelgeometry_t pixelGeometry;
+} sk_surfaceprops_t;
+
 typedef struct {
     float   x;
     float   y;
@@ -213,11 +213,6 @@ typedef struct sk_image_t sk_image_t;
  *  Describes the color components. See ICC Profiles.
  */
 typedef struct sk_colorspace_t sk_colorspace_t;
-
-/**
- *  Describes an image buffer : width, height, pixel type, colorspace, etc.
- */
-typedef struct sk_imageinfo_t sk_imageinfo_t;
 
 /**
     A sk_maskfilter_t is an object that perform transformations on an

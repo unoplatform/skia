@@ -9,8 +9,8 @@
 
 #include "SkBitmap.h"
 #include "SkColor.h"
+#include "SkColorData.h"
 #include "SkColorPriv.h"
-#include "SkDither.h"
 #include "SkImageInfo.h"
 #include "SkMath.h"
 #include "SkUnPreMultiply.h"
@@ -73,13 +73,17 @@ static inline void copyGray8FromColor(size_t size, const sk_color_t* colors, uin
 }
 
 static inline void copyRgb565FromColor(size_t width, size_t height, const sk_color_t* colors, uint16_t* pixels) {
-    for (size_t y = 0; y < height; y++) {
+    /*
+	Unknown DITHER_565_SCAN, DITHER_VALUE
+
+	for (size_t y = 0; y < height; y++) {
         DITHER_565_SCAN(y);
         for (size_t x = 0; x < width; x++) {
             SkColor c = *colors++;
             *pixels++ = SkDitherRGBTo565(SkColorGetR(c), SkColorGetG(c), SkColorGetB(c), DITHER_VALUE(x));
         }
     }
+	*/
 }
 
 static inline void copy8888FromColor(size_t size, const sk_color_t* colors, uint32_t* pixels) {

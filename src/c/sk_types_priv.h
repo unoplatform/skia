@@ -205,36 +205,4 @@ static inline sk_textblob_builder_runbuffer_t ToTextBlobBuilderRunBuffer(const S
     };
 }
 
-#include "SkDocument.h"
-static inline SkDocument::OptionalTimestamp AsDocumentOptionalTimestamp(const sk_time_datetime_t* datetime) {
-    SkDocument::OptionalTimestamp ts;
-    if (datetime) {
-        ts.fEnabled = true;
-        ts.fDateTime = *AsTimeDateTime(datetime);
-    }
-    return ts;
-}
-static inline SkString AsDocumentOptionalString(const sk_string_t* skstring) {
-    if (skstring) {
-        return *AsString(skstring);
-    } else {
-        return SkString();
-    }
-}
-static inline SkDocument::PDFMetadata AsDocumentPDFMetadata(const sk_document_pdf_metadata_t* metadata) {
-    SkDocument::PDFMetadata md;
-    md.fTitle = AsDocumentOptionalString(metadata->fTitle);
-    md.fAuthor = AsDocumentOptionalString(metadata->fAuthor);
-    md.fSubject = AsDocumentOptionalString(metadata->fSubject);
-    md.fKeywords = AsDocumentOptionalString(metadata->fKeywords);
-    md.fCreator = AsDocumentOptionalString(metadata->fCreator);
-    md.fProducer = AsDocumentOptionalString(metadata->fProducer);
-    md.fCreation =  AsDocumentOptionalTimestamp(metadata->fCreation),
-    md.fModified =  AsDocumentOptionalTimestamp(metadata->fModified),
-    md.fRasterDPI = metadata->fRasterDPI;
-    md.fPDFA = metadata->fPDFA;
-    md.fEncodingQuality = metadata->fEncodingQuality;
-    return md;
-}
-
 #endif
