@@ -26,7 +26,8 @@ sk_colorspace_t* sk_colorspace_new_srgb_linear() {
 }
 
 sk_colorspace_t* sk_colorspace_new_icc(const void* input, size_t len) {
-    return ToColorSpace(SkColorSpace::MakeICC(input, len).release());
+    // removed 8ae7c90f: return ToColorSpace(SkColorSpace::MakeICC(input, len).release());
+    return NULL;
 }
 
 sk_colorspace_t* sk_colorspace_new_rgb_with_gamma(sk_colorspace_render_target_gamma_t gamma, const sk_matrix44_t* toXYZD50) {
@@ -54,7 +55,8 @@ sk_colorspace_t* sk_colorspace_new_rgb_with_gamma_named(sk_gamma_named_t gamma, 
 }
 
 sk_colorspace_type_t sk_colorspace_gamma_get_type(const sk_colorspace_t* cColorSpace) {
-    return (sk_colorspace_type_t)AsColorSpace(cColorSpace)->type();
+    // deprecated 8ae7c90f: return (sk_colorspace_type_t)AsColorSpace(cColorSpace)->type();
+    return RGB_SK_COLORSPACE_TYPE;
 }
 
 sk_gamma_named_t sk_colorspace_gamma_get_gamma_named(const sk_colorspace_t* cColorSpace) {
@@ -82,11 +84,13 @@ bool sk_colorspace_to_xyzd50(const sk_colorspace_t* cColorSpace, sk_matrix44_t* 
 }
 
 const sk_matrix44_t* sk_colorspace_as_to_xyzd50(const sk_colorspace_t* cColorSpace) {
-    return ToMatrix44(AsColorSpace(cColorSpace)->toXYZD50());
+    // deprecated 8ae7c90f: return ToMatrix44(AsColorSpace(cColorSpace)->toXYZD50());
+    return NULL;
 }
 
 const sk_matrix44_t* sk_colorspace_as_from_xyzd50(const sk_colorspace_t* cColorSpace) {
-    return ToMatrix44(AsColorSpace(cColorSpace)->fromXYZD50());
+    // deprecated 8ae7c90f:  return ToMatrix44(AsColorSpace(cColorSpace)->fromXYZD50());
+    return NULL;
 }
 
 bool sk_colorspace_is_numerical_transfer_fn(const sk_colorspace_t* cColorSpace, sk_colorspace_transfer_fn_t* fn) {
@@ -98,10 +102,11 @@ bool sk_colorspaceprimaries_to_xyzd50(const sk_colorspaceprimaries_t* primaries,
 }
 
 void sk_colorspace_transfer_fn_invert(const sk_colorspace_transfer_fn_t* transfer, sk_colorspace_transfer_fn_t* inverted) {
-    *inverted = ToColorSpaceTransferFn(AsColorSpaceTransferFn(transfer)->invert());
+    //Transfer funcs removed: *inverted = ToColorSpaceTransferFn(AsColorSpaceTransferFn(transfer)->invert());
 }
 
 float sk_colorspace_transfer_fn_transform(const sk_colorspace_transfer_fn_t* transfer, float x) {
-    SkColorSpaceTransferFn fn = *AsColorSpaceTransferFn(transfer);
-    return fn(x);
+    // Transfer funcs removed:  SkColorSpaceTransferFn fn = *AsColorSpaceTransferFn(transfer);
+    // return fn(x);
+    return 0;
 }

@@ -255,10 +255,6 @@ static_assert ((int)SkCodec::Result::kUnimplemented       == (int)UNIMPLEMENTED_
 static_assert ((int)SkCodec::ZeroInitialized::kYes_ZeroInitialized   == (int)YES_SK_CODEC_ZERO_INITIALIZED,   ASSERT_MSG(SkCodec::ZeroInitialized, sk_codec_zero_initialized_t));
 static_assert ((int)SkCodec::ZeroInitialized::kNo_ZeroInitialized    == (int)NO_SK_CODEC_ZERO_INITIALIZED,    ASSERT_MSG(SkCodec::ZeroInitialized, sk_codec_zero_initialized_t));
 
-// sk_transfer_function_behavior_t
-static_assert ((int)SkTransferFunctionBehavior::kRespect   == (int)RESPECT_SK_TRANSFER_FUNCTION_BEHAVIOR,   ASSERT_MSG(SkTransferFunctionBehavior, sk_transfer_function_behavior_t));
-static_assert ((int)SkTransferFunctionBehavior::kIgnore    == (int)IGNORE_SK_TRANSFER_FUNCTION_BEHAVIOR,    ASSERT_MSG(SkTransferFunctionBehavior, sk_transfer_function_behavior_t));
-
 // sk_codec_scanline_order_t
 static_assert ((int)SkCodec::SkScanlineOrder::kTopDown_SkScanlineOrder    == (int)TOP_DOWN_SK_CODEC_SCANLINE_ORDER,    ASSERT_MSG(SkCodec::SkScanlineOrder, sk_codec_scanline_order_t));
 static_assert ((int)SkCodec::SkScanlineOrder::kBottomUp_SkScanlineOrder   == (int)BOTTOM_UP_SK_CODEC_SCANLINE_ORDER,   ASSERT_MSG(SkCodec::SkScanlineOrder, sk_codec_scanline_order_t));
@@ -361,11 +357,6 @@ static_assert ((int)SkGammaNamed::kSRGB_SkGammaNamed          == (int)SRGB_SK_GA
 static_assert ((int)SkGammaNamed::k2Dot2Curve_SkGammaNamed    == (int)TWO_DOT_TWO_CURVE_SK_GAMMA_NAMED,   ASSERT_MSG(SkGammaNamed, sk_gamma_named_t));
 static_assert ((int)SkGammaNamed::kNonStandard_SkGammaNamed   == (int)NON_STANDARD_SK_GAMMA_NAMED,        ASSERT_MSG(SkGammaNamed, sk_gamma_named_t));
 
-// sk_colorspace_type_t
-static_assert ((int)SkColorSpace::Type::kRGB_Type    == (int)RGB_SK_COLORSPACE_TYPE,    ASSERT_MSG(SkColorSpace::Type, sk_colorspace_type_t));
-static_assert ((int)SkColorSpace::Type::kCMYK_Type   == (int)CMYK_SK_COLORSPACE_TYPE,   ASSERT_MSG(SkColorSpace::Type, sk_colorspace_type_t));
-static_assert ((int)SkColorSpace::Type::kGray_Type   == (int)GRAY_SK_COLORSPACE_TYPE,   ASSERT_MSG(SkColorSpace::Type, sk_colorspace_type_t));
-
 // sk_highcontrastconfig_invertstyle_t
 static_assert ((int)SkHighContrastConfig::InvertStyle::kNoInvert           == (int)NO_INVERT_SK_HIGH_CONTRAST_CONFIG_INVERT_STYLE,           ASSERT_MSG(SkHighContrastConfig::InvertStyle, sk_highcontrastconfig_invertstyle_t));
 static_assert ((int)SkHighContrastConfig::InvertStyle::kInvertBrightness   == (int)INVERT_BRIGHTNESS_SK_HIGH_CONTRAST_CONFIG_INVERT_STYLE,   ASSERT_MSG(SkHighContrastConfig::InvertStyle, sk_highcontrastconfig_invertstyle_t));
@@ -373,7 +364,7 @@ static_assert ((int)SkHighContrastConfig::InvertStyle::kInvertLightness    == (i
 
 // sk_bitmap_allocflags_t
 static_assert ((int)SkBitmap::AllocFlags::kZeroPixels_AllocFlag   == (int)ZERO_PIXELS_SK_BITMAP_ALLOC_FLAGS,   ASSERT_MSG(SkBitmap::AllocFlags, sk_bitmap_allocflags_t));
-
+ 
 // sk_pngencoder_filterflags_t
 static_assert ((int)SkPngEncoder::FilterFlag::kZero    == (int)ZERO_SK_PNGENCODER_FILTER_FLAGS,    ASSERT_MSG(SkPngEncoder::FilterFlag, sk_pngencoder_filterflags_t));
 static_assert ((int)SkPngEncoder::FilterFlag::kNone    == (int)NONE_SK_PNGENCODER_FILTER_FLAGS,    ASSERT_MSG(SkPngEncoder::FilterFlag, sk_pngencoder_filterflags_t));

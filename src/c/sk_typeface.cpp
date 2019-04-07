@@ -40,7 +40,7 @@ sk_typeface_t* sk_typeface_create_from_file(const char* path, int index) {
 }
 
 sk_typeface_t* sk_typeface_create_from_stream(sk_stream_asset_t* stream, int index) {
-    return ToTypeface(SkTypeface::MakeFromStream (AsStreamAsset(stream), index).release());
+    return ToTypeface(SkTypeface::MakeFromStream (std::unique_ptr<SkStreamAsset>(AsStreamAsset(stream)), index).release());
 }
 
 int sk_typeface_chars_to_glyphs (sk_typeface_t* typeface, const char *chars, sk_encoding_t encoding, uint16_t glyphs [], int glyphCount) {

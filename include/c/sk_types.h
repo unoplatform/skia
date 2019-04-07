@@ -536,7 +536,7 @@ typedef struct {
     sk_irect_t* fSubset;
     int fFrameIndex;
     int fPriorFrame;
-    sk_transfer_function_behavior_t fPremulBehavior;
+    // Removed: sk_transfer_function_behavior_t fPremulBehavior;
 } sk_codec_options_t;
 
 typedef enum {
@@ -910,7 +910,7 @@ typedef enum {
 typedef struct {
     sk_pngencoder_filterflags_t fFilterFlags;
     int fZLibLevel;
-    sk_transfer_function_behavior_t fUnpremulBehavior;
+    // removed: sk_transfer_function_behavior_t fUnpremulBehavior;
     void* fComments;
 } sk_pngencoder_options_t;
 
@@ -929,7 +929,7 @@ typedef struct {
     int fQuality;
     sk_jpegencoder_downsample_t fDownsample;
     sk_jpegencoder_alphaoption_t fAlphaOption;
-    sk_transfer_function_behavior_t fBlendBehavior;
+    // removed: sk_transfer_function_behavior_t fBlendBehavior;
 } sk_jpegencoder_options_t;
 
 typedef enum {
@@ -940,7 +940,7 @@ typedef enum {
 typedef struct {
     sk_webpencoder_compression_t fCompression;
     float fQuality;
-    sk_transfer_function_behavior_t fUnpremulBehavior;
+    // removed: sk_transfer_function_behavior_t fUnpremulBehavior;
 } sk_webpencoder_options_t;
 typedef struct sk_rrect_t sk_rrect_t;
 

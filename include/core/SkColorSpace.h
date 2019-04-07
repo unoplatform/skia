@@ -10,6 +10,7 @@
 
 #include "../private/SkOnce.h"
 #include "SkMatrix44.h"
+#include "SkPicture.h"
 #include "SkRefCnt.h"
 #include <memory>
 
