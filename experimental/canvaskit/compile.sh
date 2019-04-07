@@ -22,7 +22,7 @@ source $EMSDK/emsdk_env.sh
 EMCC=`which emcc`
 EMCXX=`which em++`
 
-RELEASE_CONF="-Oz --closure 1 --llvm-lto 3 -DSK_RELEASE"
+RELEASE_CONF="-Oz --closure 1 --llvm-lto 3 -DSK_RELEASE -s EXPORTED_FUNCTIONS=['_sk_canvas_save']"
 EXTRA_CFLAGS="\"-DSK_RELEASE\""
 if [[ $@ == *debug* ]]; then
   echo "Building a Debug build"
@@ -46,7 +46,7 @@ echo "Compiling bitcode"
 ./bin/gn gen ${BUILD_DIR} \
   --args="cc=\"${EMCC}\" \
   cxx=\"${EMCXX}\" \
-  extra_cflags_cc=[\"-frtti\"] \
+  extra_cflags_cc=[\"-frtti\",\"-Wno-ignored-attributes\"] \
   extra_cflags=[\"-s\",\"USE_FREETYPE=1\",\"-s\",\"USE_LIBPNG=1\", \"-s\", \"WARN_UNALIGNED=1\",
     \"-DIS_WEBGL=1\", \"-DSKNX_NO_SIMD\",
     ${EXTRA_CFLAGS}
