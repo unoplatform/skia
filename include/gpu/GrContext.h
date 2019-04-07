@@ -283,6 +283,8 @@ public:
 
     bool supportsDistanceFieldText() const;
 
+    GrBackend backend() { return fBackend; }
+
 protected:
     GrContext(GrBackend, int32_t id = SK_InvalidGenID);
 

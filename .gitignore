@@ -12,6 +12,8 @@
 .project
 .recipe_deps/
 .settings/
+.vs/
+.vscode/
 TAGS
 bower_components
 common
