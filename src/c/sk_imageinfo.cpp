@@ -128,16 +128,16 @@ sk_colorspace_t* sk_imageinfo_get_colorspace(const sk_imageinfo_t* cinfo) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-
-sk_colorspace_t* sk_colorspace_new_srgb() {
-    return reinterpret_cast<sk_colorspace_t*>(SkColorSpace::MakeSRGB().release());
-}
-
-void sk_colorspace_ref(sk_colorspace_t* cs) {
-    SkSafeRef(reinterpret_cast<SkColorSpace*>(cs));
-}
-
-void sk_colorspace_unref(sk_colorspace_t* cs) {
-    SkSafeUnref(reinterpret_cast<SkColorSpace*>(cs));
-}
+//
+//sk_colorspace_t* sk_colorspace_new_srgb() {
+//    return reinterpret_cast<sk_colorspace_t*>(SkColorSpace::MakeSRGB().release());
+//}
+//
+//void sk_colorspace_ref(sk_colorspace_t* cs) {
+//    SkSafeRef(reinterpret_cast<SkColorSpace*>(cs));
+//}
+//
+//void sk_colorspace_unref(sk_colorspace_t* cs) {
+//    SkSafeUnref(reinterpret_cast<SkColorSpace*>(cs));
+//}
 

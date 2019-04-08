@@ -12,6 +12,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <emscripten.h>
 
 #ifdef __cplusplus
     #define SK_C_PLUS_PLUS_BEGIN_GUARD    extern "C" {
@@ -34,7 +35,7 @@
             #define SK_API __attribute__((visibility("default")))
         #endif
     #else
-        #define SK_API EMSCRIPTEN_KEEPALIVE
+        #define SK_API
     #endif
 #endif
 
