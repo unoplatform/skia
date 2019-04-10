@@ -130,11 +130,9 @@ ${EMCXX} \
     modules/sksg/src/*.cpp \
 	src/core/SkCubicMap.cpp \
     src/core/SkTime.cpp \
-    src/pathops/SkOpBuilder.cpp \
-	tools/fonts/SkTestFontMgr.cpp \
+    tools/fonts/SkTestFontMgr.cpp \
     tools/fonts/SkTestTypeface.cpp \
     src/utils/SkJSON.cpp \
-    src/utils/SkParse.cpp \
     -s ALLOW_MEMORY_GROWTH=1 \
     -s EXPORT_NAME="CanvasKitInit" \
     -s FORCE_FILESYSTEM=0 \
