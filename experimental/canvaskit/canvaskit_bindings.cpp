@@ -37,11 +37,6 @@ using namespace emscripten;
 
 using JSColor = int32_t;
 
-
-void EMSCRIPTEN_KEEPALIVE initFonts() {
-    gSkFontMgr_DefaultFactory = &sk_tool_utils::MakePortableFontMgr;
-}
-
 // Wraps the WebGL context in an SkSurface and returns it.
 sk_sp<SkSurface> getWebGLSurface(std::string id, int width, int height) {
     // Context configurations
@@ -195,7 +190,6 @@ namespace emscripten {
 // types Pi, Pf").  But, we can just pretend they are numbers and cast them to be pointers and
 // the compiler is happy.
 EMSCRIPTEN_BINDINGS(Skia) {
-    function("initFonts", &initFonts);
     function("_getWebGLSurface", &getWebGLSurface, allow_raw_pointers());
     function("MakeSkCornerPathEffect", &SkCornerPathEffect::Make, allow_raw_pointers());
     function("MakeSkDiscretePathEffect", &SkDiscretePathEffect::Make, allow_raw_pointers());

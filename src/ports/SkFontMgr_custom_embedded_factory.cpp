@@ -13,5 +13,6 @@ sk_sp<SkFontMgr> SkFontMgr_New_Custom_Embedded(const SkEmbeddedResourceHeader* h
 
 extern "C" const SkEmbeddedResourceHeader SK_EMBEDDED_FONTS;
 sk_sp<SkFontMgr> SkFontMgr::Factory() {
+    printf("SkFontMgr::Factory for SK_EMBEDDED_FONTS");
     return SkFontMgr_New_Custom_Embedded(&SK_EMBEDDED_FONTS);
 }
