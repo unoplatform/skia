@@ -18,6 +18,11 @@ jobs:
 
   steps:
   - bash: |
+      sudo sudo apt-get install default-jdk
+    
+    displayName: Install Java
+
+  - bash: |
       sudo chmod -R 777 /emsdk
       cd /emsdk
       sudo ./emsdk activate sdk-1.38.28-64bit
