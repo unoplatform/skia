@@ -63,6 +63,8 @@ declare_args() {
   skia_use_dng_sdk = !is_fuchsia && skia_use_libjpeg_turbo && skia_use_zlib
   skia_use_sfntly = skia_use_icu
   skia_enable_atlas_text = is_skia_dev_build && skia_enable_gpu
+  skia_enable_fontmgr_custom = (is_linux || target_cpu == "wasm") &&
+                               skia_use_freetype && !skia_use_fontconfig
 
   if (is_android) {
     skia_use_vulkan = defined(ndk_api) && ndk_api >= 24
@@ -419,6 +421,20 @@ optional("fontmgr_custom") {
     "src/ports/SkFontMgr_custom_directory_factory.cpp",
     "src/ports/SkFontMgr_custom_embedded.cpp",
     "src/ports/SkFontMgr_custom_empty.cpp",
+  ]
+}
+
+optional("fontmgr_wasm") {
+  enabled = target_cpu == "wasm"
+
+  deps = [
+    ":typeface_freetype",
+  ]
+  sources = [
+    "src/ports/SkFontMgr_custom.cpp",
+    "src/ports/SkFontMgr_custom.h",
+    "src/ports/SkFontMgr_custom_embedded.cpp",
+    "src/ports/SkFontMgr_custom_embedded_factory.cpp",
   ]
 }
 
@@ -839,6 +855,7 @@ component("skia") {
     ":fontmgr_empty",
     ":fontmgr_fontconfig",
     ":fontmgr_fuchsia",
+    ":fontmgr_wasm",
     ":gpu",
     ":heif",
     ":hsw",
@@ -855,6 +872,8 @@ component("skia") {
     ":webp",
     ":xml",
   ]
+
+  include_dirs = skia_public_includes + [ "include/xamarin" ]
 
   # This file (and all GN files in Skia) are designed to work with an
   # empty sources assignment filter; we handle all that explicitly.
@@ -897,6 +916,13 @@ component("skia") {
     "src/sfnt/SkOTUtils.cpp",
     "src/utils/mac/SkStream_mac.cpp",
     "third_party/gif/SkGifImageReader.cpp",
+    "src/xamarin/sk_manageddrawable.cpp",
+    "src/xamarin/sk_managedstream.cpp",
+    "src/xamarin/sk_xamarin.cpp",
+    "src/xamarin/SkiaKeeper.c",
+    "src/xamarin/SkManagedDrawable.cpp",
+    "src/xamarin/SkManagedStream.cpp",
+    "src/xamarin/WinRTCompat.cpp",
   ]
 
   libs = []
