@@ -37,18 +37,17 @@ jobs:
 
   - bash: |
      source /emsdk/emsdk_env.sh
-     modules/pathkit/compile.sh
+     experimental/canvaskit/compile.sh
 
     displayName: Package wasm
 
   - bash: |
-      cd out/canvaskit_wasm
-      cp * $(build.artifactstagingdirectory)
+      cp -R out/canvaskit_wasm/* $(build.artifactstagingdirectory)
 
     displayName: Copy files
 
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
-      ArtifactName: mono-sdk
+      ArtifactName: skia-wasm
       ArtifactType: Container
