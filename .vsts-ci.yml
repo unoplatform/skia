@@ -1,0 +1,48 @@
+resources:
+  containers:
+  - container: nv-bionic-wasm
+    image: nventive/wasm-build:1.1-bionic
+
+jobs:
+- job: Linux
+
+  container: nv-bionic-wasm
+
+  timeoutInMinutes: 120
+
+  workspace:
+    clean: all
+      
+  pool:
+    vmImage: 'ubuntu-16.04'
+
+  steps:
+  - bash: |
+      sudo chmod -R 777 /emsdk
+      cd /emsdk
+      sudo ./emsdk activate sdk-1.38.28-64bit
+    
+    displayName: 'Setup Emscripten'
+
+  - bash: |
+      python tools/git-sync-deps
+      ./bin/fetch-gn
+
+    displayName: Sources Setup
+
+  - bash: |
+      modules/pathkit/compile.sh
+
+    displayName: Package wasm
+
+  - bash: |
+      cd out/canvaskit_wasm
+      cp * $(build.artifactstagingdirectory)
+
+    displayName: Copy files
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      ArtifactName: mono-sdk
+      ArtifactType: Container
