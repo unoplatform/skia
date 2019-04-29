@@ -429,10 +429,6 @@ optional("fontmgr_wasm") {
     ":typeface_freetype",
   ]
   sources = [
-    "src/ports/SkFontMgr_custom.cpp",
-    "src/ports/SkFontMgr_custom.h",
-    "src/ports/SkFontMgr_custom_embedded.cpp",
-    "src/ports/SkFontMgr_custom_embedded_factory.cpp",
   ]
 }
 
