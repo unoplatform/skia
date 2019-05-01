@@ -154,4 +154,4 @@ ${EMCXX} \
 	-s SIDE_MODULE=1 \
 	-s EXPORT_ALL=1 \
     -s LEGALIZE_JS_FFI=0 \
-    -o $BUILD_DIR/canvaskit.js
+    -o $BUILD_DIR/libSkiaSharp.wasm
