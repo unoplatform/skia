@@ -51,12 +51,12 @@ sk_shader_t* sk_shader_new_local_matrix(sk_shader_t* proxy, const sk_matrix_t* l
     return ToShader(AsShader(proxy)->makeWithLocalMatrix(AsMatrix(localMatrix)).release());
 }
 
-sk_shader_t* sk_shader_new_perlin_noise_fractal_noise(float baseFrequencyX, float baseFrequencyY, int numOctaves, float seed, const sk_isize_t* ctileSize) {
+sk_shader_t* sk_shader_new_perlin_noise_fractal_noise(int numOctaves, float baseFrequencyX, float baseFrequencyY, float seed, const sk_isize_t* ctileSize) {
     return ToShader(SkPerlinNoiseShader::MakeFractalNoise(
         baseFrequencyX, baseFrequencyY, numOctaves, seed, AsISize(ctileSize)).release());
 }
 
-sk_shader_t* sk_shader_new_perlin_noise_turbulence(float baseFrequencyX, float baseFrequencyY, int numOctaves, float seed, const sk_isize_t* ctileSize) {
+sk_shader_t* sk_shader_new_perlin_noise_turbulence(int numOctaves, float baseFrequencyX, float baseFrequencyY, float seed, const sk_isize_t* ctileSize) {
     return ToShader(SkPerlinNoiseShader::MakeTurbulence(
         baseFrequencyX, baseFrequencyY,  numOctaves,  seed,  AsISize(ctileSize)).release());
 }
@@ -88,7 +88,7 @@ sk_shader_t* sk_shader_new_linear_gradient(const sk_point_t pts[2], const sk_col
         AsPoint(pts), colors, colorPos, colorCount, (SkShader::TileMode)cmode, 0, cmatrix ? &m : nullptr).release());
 }
 
-sk_shader_t* sk_shader_new_radial_gradient(const sk_point_t* ccenter, float radius, const sk_color_t* colors, const float* colorPos, int colorCount, sk_shader_tilemode_t cmode, const sk_matrix_t* cmatrix) {
+sk_shader_t* sk_shader_new_radial_gradient(const sk_point_t* ccenter, const sk_color_t* colors, const float* colorPos, int colorCount, sk_shader_tilemode_t cmode, const sk_matrix_t* cmatrix, float radius) {
     SkMatrix m;
     if (cmatrix) {
         m = AsMatrix(cmatrix);
@@ -97,7 +97,7 @@ sk_shader_t* sk_shader_new_radial_gradient(const sk_point_t* ccenter, float radi
         *AsPoint(ccenter), (SkScalar)radius, colors, colorPos, colorCount, (SkShader::TileMode)cmode, 0, cmatrix ? &m : nullptr).release());
 }
 
-sk_shader_t* sk_shader_new_sweep_gradient(const sk_point_t* ccenter, const sk_color_t* colors, const float* colorPos, int colorCount, sk_shader_tilemode_t cmode, float startAngle, float endAngle, const sk_matrix_t* cmatrix) {
+sk_shader_t* sk_shader_new_sweep_gradient(const sk_point_t* ccenter, const sk_color_t* colors, const float* colorPos, int colorCount, sk_shader_tilemode_t cmode, const sk_matrix_t* cmatrix, float startAngle, float endAngle) {
     SkMatrix m;
     if (cmatrix) {
         m = AsMatrix(cmatrix);
