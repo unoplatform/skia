@@ -18,7 +18,7 @@ sk_maskfilter_t* sk_maskfilter_new_table(const uint8_t table[256]) {
     return ToMaskFilter(SkTableMaskFilter::Create(table));
 }
 
-sk_maskfilter_t* sk_maskfilter_new_gamma(float gamma) {
+sk_maskfilter_t* sk_maskfilter_new_gamma(void* nullPad, float gamma) {
     return ToMaskFilter(SkTableMaskFilter::CreateGamma(gamma));
 }
 

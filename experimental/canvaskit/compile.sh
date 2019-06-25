@@ -104,7 +104,6 @@ echo "Generating final wasm"
 # In the context of dynamic linking, the inclusion of libpng and libfreetype
 # is forced, so that emscripten does not rely on its presence in the main module.
 # This makes the wasm file larger, but works for most scenarios.
-FORCE_LINK="~/.emscripten_cache/asmjs/ports-builds/libpng/*.o ~/.emscripten_cache/asmjs/ports-builds/freetype/libfreetype.a"
 
 # Skottie doesn't end up in libskia and is currently not its own library
 # so we just hack in the .cpp files we need for now.
@@ -146,7 +145,8 @@ ${EMCXX} \
     modules/skottie/src/SkottieShapeLayer.cpp \
     modules/skottie/src/SkottieTextLayer.cpp \
     modules/skottie/src/SkottieValue.cpp \
-	${FORCE_LINK} \
+	~/.emscripten_cache/asmjs/ports-builds/libpng/*.o \
+	~/.emscripten_cache/asmjs/ports-builds/freetype/libfreetype.a \
     modules/sksg/src/*.cpp \
     $BUILTIN_FONT \
     -s ALLOW_MEMORY_GROWTH=1 \
@@ -189,6 +189,8 @@ ${EMCXX} \
     -std=c++14 \
     --pre-js $BASE_DIR/helper.js \
     --pre-js $BASE_DIR/interface.js \
+	~/.emscripten_cache/asmjs/ports-builds/libpng/*.o \
+	~/.emscripten_cache/asmjs/ports-builds/freetype/libfreetype.a \
     $BUILD_DIR/libskia.a \
     modules/skottie/src/Skottie.cpp \
     modules/skottie/src/SkottieAdapter.cpp \
@@ -211,7 +213,9 @@ ${EMCXX} \
     -s NO_EXIT_RUNTIME=1 \
     -s STRICT=1 \
     -s USE_FREETYPE=1 \
+    -s USE_LIBPNG=1 \
     -s WARN_UNALIGNED=0 \
     -s WASM=1 \
     -s LEGALIZE_JS_FFI=0 \
+ 	-s EXPORT_ALL=1 \
     -o $BUILD_DIR/libSkiaSharp.bc

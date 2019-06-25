@@ -56,12 +56,13 @@ void sk_rrect_set_oval(sk_rrect_t* rrect, const sk_rect_t* rect) {
     AsRRect(rrect)->setOval(*AsRect(rect));
 }
 
-void sk_rrect_set_rect_xy(sk_rrect_t* rrect, const sk_rect_t* rect, float xRad, float yRad) {
+void sk_rrect_set_rect_xy(sk_rrect_t* rrect, const sk_rect_t* rect, float xRad, float yRad, void* nullPad) {
     AsRRect(rrect)->setRectXY(*AsRect(rect), xRad, yRad);
 }
 
-void sk_rrect_set_nine_patch(sk_rrect_t* rrect, const sk_rect_t* rect, float leftRad, float topRad, float rightRad, float bottomRad) {
+void* sk_rrect_set_nine_patch(sk_rrect_t* rrect, const sk_rect_t* rect, float leftRad, float topRad, float rightRad, float bottomRad) {
     AsRRect(rrect)->setNinePatch(*AsRect(rect), leftRad, topRad, rightRad, bottomRad);
+    return NULL;
 }
 
 void sk_rrect_set_rect_radii(sk_rrect_t* rrect, const sk_rect_t* rect, const sk_vector_t* radii) {

@@ -41,7 +41,7 @@ SK_API void sk_path_rquad_to(sk_path_t*, float dx0, float dy0, float dx1, float 
 SK_API void sk_path_rconic_to(sk_path_t*, float dx0, float dy0, float dx1, float dy1, float w);
 SK_API void sk_path_rcubic_to(sk_path_t*, float dx0, float dy0, float dx1, float dy1, float dx2, float dy2);
 SK_API void sk_path_add_rect_start(sk_path_t* cpath, const sk_rect_t* crect, sk_path_direction_t cdir, uint32_t startIndex);
-SK_API void sk_path_add_arc(sk_path_t* cpath, const sk_rect_t* crect, float startAngle, float sweepAngle);
+SK_API void sk_path_add_arc(sk_path_t* cpath, const sk_rect_t* crect, float startAngle, float sweepAngle, void* nullPad);
 SK_API sk_path_filltype_t sk_path_get_filltype(sk_path_t*);
 SK_API void sk_path_set_filltype(sk_path_t*, sk_path_filltype_t);
 SK_API void sk_path_transform(sk_path_t* cpath, const sk_matrix_t* cmatrix);

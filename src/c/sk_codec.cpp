@@ -38,8 +38,9 @@ sk_encodedorigin_t sk_codec_get_origin(sk_codec_t* codec) {
     return (sk_encodedorigin_t)AsCodec(codec)->getOrigin();
 }
 
-void sk_codec_get_scaled_dimensions(sk_codec_t* codec, float desiredScale, sk_isize_t* dimensions) {
+void* sk_codec_get_scaled_dimensions(sk_codec_t* codec, sk_isize_t* dimensions, float desiredScale) {
     *dimensions = ToISize(AsCodec(codec)->getScaledDimensions(desiredScale));
+    return NULL;
 }
 
 bool sk_codec_get_valid_subset(sk_codec_t* codec, sk_irect_t* desiredSubset) {

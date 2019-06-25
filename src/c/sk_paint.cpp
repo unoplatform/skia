@@ -210,7 +210,7 @@ float sk_paint_measure_text(const sk_paint_t* cpaint, const void* text, size_t l
     return AsPaint(cpaint)->measureText(text, length, AsRect(bounds));
 }
 
-sk_path_t* sk_paint_get_text_path(sk_paint_t* cpaint, const void* text, size_t length, float x, float y) {
+sk_path_t* sk_paint_get_text_path(float x, float y, sk_paint_t* cpaint, const void* text, size_t length) {
     SkPath* path = new SkPath();
     AsPaint(cpaint)->getTextPath(text, length, x, y, path);
     return ToPath(path);
@@ -298,7 +298,7 @@ void sk_paint_set_dev_kern_text(sk_paint_t* cpaint, bool devKernText) {
     AsPaint(cpaint)->setDevKernText(devKernText);
 }
 
-bool sk_paint_get_fill_path(const sk_paint_t* cpaint, const sk_path_t* src, sk_path_t* dst, const sk_rect_t* cullRect, float resScale) {
+bool sk_paint_get_fill_path(const sk_paint_t* cpaint, const sk_path_t* src, sk_path_t* dst, float resScale, const sk_rect_t* cullRect) {
     return AsPaint(cpaint)->getFillPath(*AsPath(src), AsPath(dst), AsRect(cullRect), resScale);
 }
 
@@ -318,7 +318,7 @@ int sk_paint_get_text_widths(const sk_paint_t* cpaint, const void* text, size_t 
     return AsPaint(cpaint)->getTextWidths(text, byteLength, widths, AsRect(bounds));
 }
 
-int sk_paint_get_text_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, float x, float y, const float bounds[2], float* intervals) {
+int sk_paint_get_text_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, const float bounds[2], float* intervals, float x, float y) {
     return AsPaint(cpaint)->getTextIntercepts(text, byteLength, x, y, bounds, intervals);
 }
 
@@ -326,7 +326,7 @@ int sk_paint_get_pos_text_intercepts(const sk_paint_t* cpaint, const void* text,
     return AsPaint(cpaint)->getPosTextIntercepts(text, byteLength, AsPoint(pos), bounds, intervals);
 }
 
-int sk_paint_get_pos_text_h_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, float* xpos, float y, const float bounds[2], float* intervals) {
+int sk_paint_get_pos_text_h_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, float* xpos, const float bounds[2], float* intervals, float y) {
     return AsPaint(cpaint)->getPosTextHIntercepts(text, byteLength, xpos, y, bounds, intervals);
 }
 

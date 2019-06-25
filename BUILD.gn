@@ -418,6 +418,7 @@ optional("fontmgr_custom") {
     "src/ports/SkFontMgr_custom.cpp",
     "src/ports/SkFontMgr_custom.h",
     "src/ports/SkFontMgr_custom_embedded.cpp",
+    "src/ports/SkFontMgr_custom_embedded_factory.cpp",
     "src/ports/SkFontMgr_custom_empty.cpp",
   ]
 }
@@ -427,6 +428,7 @@ optional("fontmgr_wasm") {
 
   deps = [
     ":typeface_freetype",
+    "//third_party/libpng",
   ]
   sources = [
   ]

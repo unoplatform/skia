@@ -45,11 +45,11 @@ void sk_canvas_draw_points(sk_canvas_t* ccanvas, sk_point_mode_t pointMode, size
     AsCanvas(ccanvas)->drawPoints ((SkCanvas::PointMode)pointMode, count, AsPoint(points), *AsPaint(cpaint));
 }
 
-void sk_canvas_draw_point(sk_canvas_t* ccanvas, float x, float y, const sk_paint_t* cpaint) {
+void* sk_canvas_draw_point(sk_canvas_t* ccanvas, const sk_paint_t* cpaint, float x, float y) {
     AsCanvas(ccanvas)->drawPoint (x, y, *AsPaint(cpaint));
 }
 
-void sk_canvas_draw_line(sk_canvas_t* ccanvas, float x0, float y0, float x1, float y1, sk_paint_t* cpaint) {
+void* sk_canvas_draw_line(sk_canvas_t* ccanvas, float x0, float y0, float x1, float y1, sk_paint_t* cpaint) {
     AsCanvas(ccanvas)->drawLine(x0, y0, x1, y1, *AsPaint(cpaint));
 }
 
@@ -62,7 +62,7 @@ void sk_canvas_draw_pos_text (sk_canvas_t* ccanvas, const char *text, size_t byt
     AsCanvas(ccanvas)->drawPosText(text, byteLength, AsPoint(pos), *AsPaint(cpaint));
 }
 
-int sk_canvas_draw_text_on_path (sk_canvas_t* ccanvas, float hOffset, float vOffset, const char *text, size_t byteLength, const sk_path_t* path, const sk_paint_t* cpaint) {
+int sk_canvas_draw_text_on_path (sk_canvas_t* ccanvas, const char *text, size_t byteLength, const sk_path_t* path, const sk_paint_t* cpaint, void* nullPad, float hOffset, float vOffset) {
 	// SkDrawTextOnPath(text, byteLength, *AsPath(path), hOffset, vOffset, *AsPaint(cpaint), AsCanvas(ccanvas));
 	// TODO
     return 0;
@@ -182,8 +182,9 @@ void sk_canvas_draw_rrect(sk_canvas_t* ccanvas, const sk_rrect_t* crect, const s
     AsCanvas(ccanvas)->drawRRect(*AsRRect(crect), *AsPaint(cpaint));
 }
 
-void sk_canvas_draw_circle(sk_canvas_t* ccanvas, float cx, float cy, float rad, const sk_paint_t* cpaint) {
+void* sk_canvas_draw_circle(sk_canvas_t* ccanvas, const sk_paint_t* cpaint, float cx, float cy, float rad) {
     AsCanvas(ccanvas)->drawCircle(cx, cy, rad, *AsPaint(cpaint));
+    return NULL;
 }
 
 void sk_canvas_draw_oval(sk_canvas_t* ccanvas, const sk_rect_t* crect, const sk_paint_t* cpaint) {

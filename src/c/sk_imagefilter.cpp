@@ -102,12 +102,15 @@ sk_imagefilter_t* sk_imagefilter_new_drop_shadow(float dx, float dy, float sigma
 }
 
 sk_imagefilter_t* sk_imagefilter_new_distant_lit_diffuse(
+	void* nullPad0,
+	void* nullPad1,
     const sk_point3_t* direction,
     sk_color_t lightColor,
-    float surfaceScale,
-    float kd,
     sk_imagefilter_t* input,
-    const sk_imagefilter_croprect_t* cropRect) {
+    const sk_imagefilter_croprect_t* cropRect,
+	float surfaceScale,
+    float kd
+) {
 
     sk_sp<SkImageFilter> filter = SkLightingImageFilter::MakeDistantLitDiffuse(
         *AsPoint3(direction),

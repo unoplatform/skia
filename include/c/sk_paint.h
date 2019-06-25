@@ -62,7 +62,7 @@ SK_API float sk_paint_get_text_skew_x(const sk_paint_t* cpaint);
 SK_API void sk_paint_set_text_skew_x(sk_paint_t* cpaint, float skew);
 SK_API size_t sk_paint_break_text(const sk_paint_t* cpaint, const void* text, size_t length, float maxWidth, float* measuredWidth);
 SK_API float sk_paint_measure_text(const sk_paint_t* cpaint, const void* text, size_t length, sk_rect_t* cbounds);
-SK_API sk_path_t* sk_paint_get_text_path(sk_paint_t* cpaint, const void* text, size_t length, float x, float y);
+SK_API sk_path_t* sk_paint_get_text_path(float x, float y, sk_paint_t* cpaint, const void* text, size_t length);
 SK_API sk_path_t* sk_paint_get_pos_text_path(sk_paint_t* cpaint, const void* text, size_t length, const sk_point_t pos[]);
 SK_API float sk_paint_get_fontmetrics(sk_paint_t* cpaint, sk_fontmetrics_t* cfontmetrics, float scale);
 SK_API sk_path_effect_t* sk_paint_get_path_effect(sk_paint_t* cpaint);
@@ -83,14 +83,14 @@ SK_API bool sk_paint_is_fake_bold_text(const sk_paint_t*);
 SK_API void sk_paint_set_fake_bold_text(sk_paint_t*, bool);
 SK_API bool sk_paint_is_dev_kern_text(const sk_paint_t*);
 SK_API void sk_paint_set_dev_kern_text(sk_paint_t*, bool);
-SK_API bool sk_paint_get_fill_path(const sk_paint_t*, const sk_path_t* src, sk_path_t* dst, const sk_rect_t* cullRect, float resScale);
+SK_API bool sk_paint_get_fill_path(const sk_paint_t*, const sk_path_t* src, sk_path_t* dst, float resScale, const sk_rect_t* cullRect);
 SK_API int sk_paint_text_to_glyphs(const sk_paint_t* cpaint, const void* text, size_t byteLength, uint16_t* glyphs);
 SK_API bool sk_paint_contains_text(const sk_paint_t* cpaint, const void* text, size_t byteLength);
 SK_API int sk_paint_count_text(const sk_paint_t* cpaint, const void* text, size_t byteLength);
 SK_API int sk_paint_get_text_widths(const sk_paint_t* cpaint, const void* text, size_t byteLength, float* widths, sk_rect_t* bounds);
-SK_API int sk_paint_get_text_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, float x, float y, const float bounds[2], float* intervals);
+SK_API int sk_paint_get_text_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, const float bounds[2], float* intervals, float x, float y);
 SK_API int sk_paint_get_pos_text_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, sk_point_t* pos, const float bounds[2], float* intervals);
-SK_API int sk_paint_get_pos_text_h_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, float* xpos, float y, const float bounds[2], float* intervals);
+SK_API int sk_paint_get_pos_text_h_intercepts(const sk_paint_t* cpaint, const void* text, size_t byteLength, float* xpos, const float bounds[2], float* intervals, float y);
 SK_API int sk_paint_get_pos_text_blob_intercepts(const sk_paint_t* cpaint, sk_textblob_t* blob, const float bounds[2], float* intervals);
 
 SK_C_PLUS_PLUS_END_GUARD

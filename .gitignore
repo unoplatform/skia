@@ -57,3 +57,5 @@ gl-out
 
 node_modules
 tools/lottiecap/filmstrip.png
+/a.out.wasm
+/a.out.js
