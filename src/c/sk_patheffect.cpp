@@ -32,11 +32,11 @@ sk_path_effect_t* sk_path_effect_create_sum(sk_path_effect_t* first, sk_path_eff
     return ToPathEffect(SkPathEffect::MakeSum(sk_ref_sp(AsPathEffect(first)), sk_ref_sp(AsPathEffect(second))).release());
 }
 
-sk_path_effect_t* sk_path_effect_create_discrete(float segLength, float deviation, uint32_t seedAssist) {
+sk_path_effect_t* sk_path_effect_create_discrete(float segLength, float deviation, uint32_t seedAssist, void* nullPad) {
     return ToPathEffect(SkDiscretePathEffect::Make(segLength, deviation, seedAssist).release());
 }
 
-sk_path_effect_t* sk_path_effect_create_corner(float radius) {
+sk_path_effect_t* sk_path_effect_create_corner(void* nullPad, float radius) {
     return ToPathEffect(SkCornerPathEffect::Make(radius).release());
 }
 
@@ -44,7 +44,7 @@ sk_path_effect_t* sk_path_effect_create_1d_path(const sk_path_t* path, float adv
     return ToPathEffect(SkPath1DPathEffect::Make(*AsPath(path), advance, phase, (SkPath1DPathEffect::Style)style).release());
 }
 
-sk_path_effect_t* sk_path_effect_create_2d_line(float width, const sk_matrix_t* cmatrix) {
+sk_path_effect_t* sk_path_effect_create_2d_line(void* nullPad, float width, const sk_matrix_t* cmatrix) {
     return ToPathEffect(SkLine2DPathEffect::Make(width, AsMatrix(cmatrix)).release());
 }
 

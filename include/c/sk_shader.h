@@ -23,20 +23,20 @@ SK_API sk_shader_t* sk_shader_new_linear_gradient(const sk_point_t points[2],
                                            sk_shader_tilemode_t tileMode,
                                            const sk_matrix_t* localMatrix);
 SK_API sk_shader_t* sk_shader_new_radial_gradient(const sk_point_t* center,
-                                           float radius,
                                            const sk_color_t colors[],
                                            const float colorPos[],
                                            int colorCount,
                                            sk_shader_tilemode_t tileMode,
-                                           const sk_matrix_t* localMatrix);
+                                           const sk_matrix_t* localMatrix,
+                                           float radius);
 SK_API sk_shader_t* sk_shader_new_sweep_gradient(const sk_point_t* center,
                                           const sk_color_t colors[],
                                           const float colorPos[],
                                           int colorCount,
                                           sk_shader_tilemode_t tileMode,
+                                          const sk_matrix_t* localMatrix, 
                                           float startAngle,
-                                          float endAngle,
-                                          const sk_matrix_t* localMatrix);
+                                          float endAngle);
 SK_API sk_shader_t* sk_shader_new_two_point_conical_gradient(
         const sk_point_t* start,
         float startRadius,
@@ -61,16 +61,16 @@ SK_API sk_shader_t* sk_shader_new_picture(sk_picture_t* src,
 SK_API sk_shader_t* sk_shader_new_local_matrix(sk_shader_t* proxy, const sk_matrix_t* localMatrix);
 SK_API sk_shader_t* sk_shader_new_color_filter(sk_shader_t* proxy, sk_colorfilter_t* filter);
 SK_API sk_shader_t* sk_shader_new_perlin_noise_fractal_noise(
+    int numOctaves,
     float baseFrequencyX,
     float baseFrequencyY,
-    int numOctaves,
     float seed,
     const sk_isize_t* tileSize);
 SK_API sk_shader_t* sk_shader_new_perlin_noise_turbulence(
-    float baseFrequencyX,
-    float baseFrequencyY,
     int numOctaves,
     float seed,
+    float baseFrequencyX,
+    float baseFrequencyY,
     const sk_isize_t* tileSize);
 SK_API sk_shader_t* sk_shader_new_compose(
     sk_shader_t* shaderA,

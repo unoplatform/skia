@@ -58,12 +58,15 @@ SK_API sk_imagefilter_t* sk_imagefilter_new_drop_shadow(
     sk_imagefilter_t* input /*NULL*/,
     const sk_imagefilter_croprect_t* cropRect /*NULL*/);
 SK_API sk_imagefilter_t* sk_imagefilter_new_distant_lit_diffuse(
+	void* nullPad0,
+	void* nullPad1,
     const sk_point3_t* direction,
     sk_color_t lightColor,
-    float surfaceScale,
-    float kd,
     sk_imagefilter_t* input /*NULL*/,
-    const sk_imagefilter_croprect_t* cropRect /*NULL*/);
+    const sk_imagefilter_croprect_t* cropRect /*NULL*/,
+	float surfaceScale,
+    float kd
+);
 SK_API sk_imagefilter_t* sk_imagefilter_new_point_lit_diffuse(
     const sk_point3_t* location,
     sk_color_t lightColor,

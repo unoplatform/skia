@@ -54,13 +54,13 @@ void sk_matrix_map_vectors(sk_matrix_t *matrix, sk_point_t *dst, sk_point_t *src
     AsMatrix(matrix).mapVectors(AsPoint(dst), AsPoint(src), count);
 }
 
-void sk_matrix_map_xy(sk_matrix_t *matrix, float x, float y, sk_point_t* cresult) {
+void sk_matrix_map_xy(sk_matrix_t* matrix, sk_point_t* cresult, float x, float y, void* nullPad) {
     SkPoint result;
     AsMatrix(matrix).mapXY(x, y, &result);
     *cresult = *ToPoint(&result);
 }
 
-void sk_matrix_map_vector(sk_matrix_t *matrix, float x, float y, sk_point_t* cresult) {
+void sk_matrix_map_vector(sk_matrix_t *matrix, sk_point_t* cresult, float x, float y, void* nullPad) {
     SkPoint result;
     AsMatrix(matrix).mapVector(x, y, &result);
     *cresult = *ToPoint(&result);
@@ -88,7 +88,7 @@ void sk_3dview_restore(sk_3dview_t* cview) {
     As3DView(cview)->restore();
 }
 
-void sk_3dview_translate(sk_3dview_t* cview, float x, float y, float z) {
+void sk_3dview_translate(sk_3dview_t* cview, float x, float y, float z, void* nullPad) {
     As3DView(cview)->translate(x, y, z);
 }
 
@@ -177,8 +177,10 @@ float sk_matrix44_get(sk_matrix44_t* matrix, int row, int col) {
     return AsMatrix44(matrix)->get(row, col);
 }
 
-void sk_matrix44_set(sk_matrix44_t* matrix, int row, int col, float value) {
+void* sk_matrix44_set(sk_matrix44_t* matrix, int row, int col, float value) {
     AsMatrix44(matrix)->set(row, col, value);
+	
+	return NULL;
 }
 
 void sk_matrix44_as_col_major(sk_matrix44_t* matrix, float* dst) {
@@ -197,27 +199,27 @@ void sk_matrix44_set_row_major(sk_matrix44_t* matrix, float* dst) {
     AsMatrix44(matrix)->setRowMajorf(dst);
 }
 
-void sk_matrix44_set_translate(sk_matrix44_t* matrix, float dx, float dy, float dz) {
+void sk_matrix44_set_translate(sk_matrix44_t* matrix, float dx, float dy, float dz, void* nullPad) {
     AsMatrix44(matrix)->setTranslate(dx, dy, dz);
 }
 
-void sk_matrix44_pre_translate(sk_matrix44_t* matrix, float dx, float dy, float dz) {
+void sk_matrix44_pre_translate(sk_matrix44_t* matrix, float dx, float dy, float dz, void* nullPad) {
     AsMatrix44(matrix)->preTranslate(dx, dy, dz);
 }
 
-void sk_matrix44_post_translate(sk_matrix44_t* matrix, float dx, float dy, float dz) {
+void sk_matrix44_post_translate(sk_matrix44_t* matrix, float dx, float dy, float dz, void* nullPad) {
     AsMatrix44(matrix)->postTranslate(dx, dy, dz);
 }
 
-void sk_matrix44_set_scale(sk_matrix44_t* matrix, float sx, float sy, float sz) {
+void sk_matrix44_set_scale(sk_matrix44_t* matrix, float sx, float sy, float sz, void* nullPad) {
     AsMatrix44(matrix)->setScale(sx, sy, sz);
 }
 
-void sk_matrix44_pre_scale(sk_matrix44_t* matrix, float sx, float sy, float sz) {
+void sk_matrix44_pre_scale(sk_matrix44_t* matrix, float sx, float sy, float sz, void* nullPad) {
     AsMatrix44(matrix)->preScale(sx, sy, sz);
 }
 
-void sk_matrix44_post_scale(sk_matrix44_t* matrix, float sx, float sy, float sz) {
+void sk_matrix44_post_scale(sk_matrix44_t* matrix, float sx, float sy, float sz, void* nullPad) {
     AsMatrix44(matrix)->postScale(sx, sy, sz);
 }
 

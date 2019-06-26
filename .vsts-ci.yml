@@ -1,7 +1,7 @@
 resources:
   containers:
   - container: nv-bionic-wasm
-    image: nventive/wasm-build:1.1-bionic
+    image: nventive/wasm-build:1.4.1
 
 jobs:
 - job: Linux
@@ -24,9 +24,9 @@ jobs:
     displayName: Install Java
 
   - bash: |
-      sudo chmod -R 777 /emsdk
       cd /emsdk
-      sudo ./emsdk activate sdk-1.38.28-64bit
+      sudo ./emsdk activate sdk-1.38.31-64bit
+      sudo chmod -R 777 /emsdk
     
     displayName: 'Setup Emscripten'
 

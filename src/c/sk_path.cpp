@@ -40,7 +40,7 @@ void sk_path_add_rect_start(sk_path_t* cpath, const sk_rect_t* crect, sk_path_di
     AsPath(cpath)->addRect(*AsRect(crect), (SkPath::Direction)cdir, startIndex);
 }
 
-void sk_path_add_arc(sk_path_t* cpath, const sk_rect_t* crect, float startAngle, float sweepAngle) {
+void sk_path_add_arc(sk_path_t* cpath, const sk_rect_t* crect, float startAngle, float sweepAngle, void* nullPad) {
     AsPath(cpath)->addArc(*AsRect(crect), startAngle, sweepAngle);
 }
 
