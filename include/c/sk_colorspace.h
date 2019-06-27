@@ -23,7 +23,6 @@ SK_API sk_colorspace_t* sk_colorspace_new_rgb_with_gamma_and_gamut(sk_colorspace
 SK_API sk_colorspace_t* sk_colorspace_new_rgb_with_coeffs(const sk_colorspace_transfer_fn_t* coeffs, const sk_matrix44_t* toXYZD50);
 SK_API sk_colorspace_t* sk_colorspace_new_rgb_with_coeffs_and_gamut(const sk_colorspace_transfer_fn_t* coeffs, sk_colorspace_gamut_t gamut);
 SK_API sk_colorspace_t* sk_colorspace_new_rgb_with_gamma_named(sk_gamma_named_t gamma, const sk_matrix44_t* toXYZD50);
-SK_API sk_colorspace_t* sk_colorspace_new_rgb_with_gamma_named_and_gamut(sk_gamma_named_t gamma, sk_colorspace_gamut_t gamut);
 SK_API sk_colorspace_type_t sk_colorspace_gamma_get_type(const sk_colorspace_t* cColorSpace);
 SK_API sk_gamma_named_t sk_colorspace_gamma_get_gamma_named(const sk_colorspace_t* cColorSpace);
 SK_API bool sk_colorspace_gamma_close_to_srgb(const sk_colorspace_t* cColorSpace);
