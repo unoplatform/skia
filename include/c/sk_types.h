@@ -35,7 +35,7 @@
             #define SK_API __attribute__((visibility("default")))
         #endif
     #else
-        #define SK_API
+		#define SK_API EMSCRIPTEN_KEEPALIVE
     #endif
 #endif
 
