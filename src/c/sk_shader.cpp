@@ -106,11 +106,11 @@ sk_shader_t* sk_shader_new_sweep_gradient(const sk_point_t* ccenter, const sk_co
         ccenter->x, ccenter->y, colors, colorPos, colorCount, (SkShader::TileMode)cmode, startAngle, endAngle, 0, cmatrix ? &m : nullptr).release());
 }
 
-sk_shader_t* sk_shader_new_two_point_conical_gradient(const sk_point_t* start, float startRadius, const sk_point_t* end, float endRadius, const sk_color_t* colors, const float* colorPos, int colorCount, sk_shader_tilemode_t cmode, const sk_matrix_t* cmatrix) {
+sk_shader_t* sk_shader_new_two_point_conical_gradient(sk_shader_new_two_point_conical_gradient_params *pParams) {
     SkMatrix m;
-    if (cmatrix) {
-        m = AsMatrix(cmatrix);
+    if (pParams->cmatrix) {
+        m = AsMatrix(pParams->cmatrix);
     }
     return ToShader(SkGradientShader::MakeTwoPointConical(
-        *AsPoint(start), startRadius, *AsPoint(end), endRadius, colors, colorPos, colorCount, (SkShader::TileMode)cmode, 0, cmatrix ? &m : nullptr).release());
+        *AsPoint(pParams->start), pParams->startRadius, *AsPoint(pParams->end), pParams->endRadius, pParams->colors, pParams->colorPos, pParams->colorCount, (SkShader::TileMode)pParams->cmode, 0, pParams->cmatrix ? &m : nullptr).release());
 }
