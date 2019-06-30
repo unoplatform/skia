@@ -14,6 +14,22 @@
 
 SK_C_PLUS_PLUS_BEGIN_GUARD
 
+/* 
+Custom parameter structure to work around the limited set of available 
+parameters in the m2n generation.
+*/
+typedef struct {
+    const sk_point_t* start;
+    float startRadius;
+    const sk_point_t* end;
+    float endRadius;
+    const sk_color_t* colors; 
+	const float* colorPos;
+    int colorCount;
+    sk_shader_tilemode_t cmode; 
+	const sk_matrix_t* cmatrix;
+} sk_shader_new_two_point_conical_gradient_params;
+
 SK_API void sk_shader_ref(sk_shader_t*);
 SK_API void sk_shader_unref(sk_shader_t*);
 SK_API sk_shader_t* sk_shader_new_linear_gradient(const sk_point_t points[2],
@@ -37,16 +53,7 @@ SK_API sk_shader_t* sk_shader_new_sweep_gradient(const sk_point_t* center,
                                           const sk_matrix_t* localMatrix, 
                                           float startAngle,
                                           float endAngle);
-SK_API sk_shader_t* sk_shader_new_two_point_conical_gradient(
-        const sk_point_t* start,
-        float startRadius,
-        const sk_point_t* end,
-        float endRadius,
-        const sk_color_t colors[],
-        const float colorPos[],
-        int colorCount,
-        sk_shader_tilemode_t tileMode,
-        const sk_matrix_t* localMatrix);
+SK_API sk_shader_t* sk_shader_new_two_point_conical_gradient(sk_shader_new_two_point_conical_gradient_params *pParams);
 SK_API sk_shader_t* sk_shader_new_empty(void);
 SK_API sk_shader_t* sk_shader_new_color(sk_color_t color);
 SK_API sk_shader_t* sk_shader_new_bitmap(const sk_bitmap_t* src,
