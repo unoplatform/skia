@@ -173,8 +173,8 @@ void sk_matrix44_set_identity(sk_matrix44_t* matrix) {
     AsMatrix44(matrix)->setIdentity();
 }
 
-float sk_matrix44_get(sk_matrix44_t* matrix, int row, int col) {
-    return AsMatrix44(matrix)->get(row, col);
+float sk_matrix44_get(const sk_matrix44_get_params* params) {
+    return AsMatrix44(params->matrix)->get(params->row, params->col);
 }
 
 void* sk_matrix44_set(sk_matrix44_t* matrix, int row, int col, float value) {

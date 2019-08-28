@@ -14,6 +14,23 @@
 
 SK_C_PLUS_PLUS_BEGIN_GUARD
 
+/*
+Custom parameter structure to work around the limited set of available
+parameters in the m2n generation.
+*/
+typedef struct {
+    const sk_paint_t* cpaint;
+    const void* text;
+    size_t length;
+    sk_rect_t* cbounds;
+} sk_paint_measure_text_params;
+
+typedef struct {
+    sk_paint_t* cpaint;
+    sk_fontmetrics_t* cfontmetrics;
+    float scale;
+} sk_paint_get_fontmetrics_params;
+
 SK_API sk_paint_t* sk_paint_new(void);
 SK_API sk_paint_t* sk_paint_clone(sk_paint_t*);
 SK_API void sk_paint_delete(sk_paint_t*);
@@ -61,12 +78,12 @@ SK_API void sk_paint_set_text_scale_x(sk_paint_t* cpaint, float scale);
 SK_API float sk_paint_get_text_skew_x(const sk_paint_t* cpaint);
 SK_API void sk_paint_set_text_skew_x(sk_paint_t* cpaint, float skew);
 SK_API size_t sk_paint_break_text(const sk_paint_t* cpaint, const void* text, size_t length, float maxWidth, float* measuredWidth);
-SK_API float sk_paint_measure_text(const sk_paint_t* cpaint, const void* text, size_t length, sk_rect_t* cbounds);
+SK_API float sk_paint_measure_text(const sk_paint_measure_text_params* parms);
 SK_API sk_path_t* sk_paint_get_text_path(float x, float y, sk_paint_t* cpaint, const void* text, size_t length);
 SK_API sk_path_t* sk_paint_get_pos_text_path(sk_paint_t* cpaint, const void* text, size_t length, const sk_point_t pos[]);
-SK_API float sk_paint_get_fontmetrics(sk_paint_t* cpaint, sk_fontmetrics_t* cfontmetrics, float scale);
+SK_API float sk_paint_get_fontmetrics(const sk_paint_get_fontmetrics_params* p);
 SK_API sk_path_effect_t* sk_paint_get_path_effect(sk_paint_t* cpaint);
-SK_API void sk_paint_set_path_effect(sk_paint_t* cpaint, sk_path_effect_t* effect);  
+SK_API void sk_paint_set_path_effect(sk_paint_t* cpaint, sk_path_effect_t* effect);
 SK_API bool sk_paint_is_linear_text(const sk_paint_t*);
 SK_API void sk_paint_set_linear_text(sk_paint_t*, bool);
 SK_API bool sk_paint_is_subpixel_text(const sk_paint_t*);

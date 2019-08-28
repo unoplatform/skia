@@ -156,12 +156,12 @@ void sk_path_cubic_to(sk_path_t* cpath, float x0, float y0, float x1, float y1, 
     AsPath(cpath)->cubicTo(x0, y0, x1, y1, x2, y2);
 }
 
-void sk_path_arc_to(sk_path_t* cpath, float rx, float ry, float xAxisRotate, sk_path_arc_size_t largeArc, sk_path_direction_t sweep, float x, float y) {
-    AsPath(cpath)->arcTo(rx, ry, xAxisRotate, (SkPath::ArcSize)largeArc, (SkPath::Direction)sweep, x, y);
+void sk_path_arc_to(sk_path_arc_to_params* p) {
+    AsPath(p->cpath)->arcTo(p->rx, p->ry, p->xAxisRotate, (SkPath::ArcSize)p->largeArc, (SkPath::Direction)p->sweep, p->x, p->y);
 }
 
-void sk_path_rarc_to(sk_path_t* cpath, float rx, float ry, float xAxisRotate, sk_path_arc_size_t largeArc, sk_path_direction_t sweep, float x, float y) {
-    AsPath(cpath)->rArcTo(rx, ry, xAxisRotate, (SkPath::ArcSize)largeArc, (SkPath::Direction)sweep, x, y);
+void sk_path_rarc_to(sk_path_rarc_to_params* p) {
+    AsPath(p->cpath)->rArcTo(p->rx, p->ry, p->xAxisRotate, (SkPath::ArcSize)p->largeArc, (SkPath::Direction)p->sweep, p->x, p->y);
 }
 
 void sk_path_arc_to_with_oval(sk_path_t* cpath, const sk_rect_t* oval, float startAngle, float sweepAngle, bool forceMoveTo) {

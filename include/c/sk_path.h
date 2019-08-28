@@ -14,6 +14,32 @@
 
 SK_C_PLUS_PLUS_BEGIN_GUARD
 
+/*
+Custom parameter structure to work around the limited set of available
+parameters in the m2n generation.
+*/
+typedef struct {
+    sk_path_t* cpath;
+    float rx;
+    float ry;
+    float xAxisRotate;
+    sk_path_arc_size_t largeArc;
+    sk_path_direction_t sweep;
+    float x;
+    float y;
+} sk_path_arc_to_params;
+
+typedef struct {
+    sk_path_t* cpath;
+    float rx;
+    float ry;
+    float xAxisRotate;
+    sk_path_arc_size_t largeArc;
+    sk_path_direction_t sweep;
+    float x;
+    float y;
+} sk_path_rarc_to_params;
+
 /* Path */
 SK_API sk_path_t* sk_path_new(void);
 SK_API void sk_path_delete(sk_path_t*);
@@ -22,8 +48,8 @@ SK_API void sk_path_line_to(sk_path_t*, float x, float y);
 SK_API void sk_path_quad_to(sk_path_t*, float x0, float y0, float x1, float y1);
 SK_API void sk_path_conic_to(sk_path_t*, float x0, float y0, float x1, float y1, float w);
 SK_API void sk_path_cubic_to(sk_path_t*, float x0, float y0, float x1, float y1, float x2, float y2);
-SK_API void sk_path_arc_to(sk_path_t*, float rx, float ry, float xAxisRotate, sk_path_arc_size_t largeArc, sk_path_direction_t sweep, float x, float y);
-SK_API void sk_path_rarc_to(sk_path_t*, float rx, float ry, float xAxisRotate, sk_path_arc_size_t largeArc, sk_path_direction_t sweep, float x, float y);
+SK_API void sk_path_arc_to(sk_path_arc_to_params *p);
+SK_API void sk_path_rarc_to(sk_path_rarc_to_params* p);
 SK_API void sk_path_arc_to_with_oval(sk_path_t*, const sk_rect_t* oval, float startAngle, float sweepAngle, bool forceMoveTo);
 SK_API void sk_path_arc_to_with_points(sk_path_t*, float x1, float y1, float x2, float y2, float radius);
 SK_API void sk_path_close(sk_path_t*);

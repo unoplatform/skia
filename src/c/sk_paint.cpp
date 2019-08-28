@@ -206,8 +206,8 @@ size_t sk_paint_break_text(const sk_paint_t* cpaint, const void* text, size_t le
     return AsPaint(cpaint)->breakText(text, length, maxWidth, measuredWidth);
 }
 
-float sk_paint_measure_text(const sk_paint_t* cpaint, const void* text, size_t length, sk_rect_t* bounds) {
-    return AsPaint(cpaint)->measureText(text, length, AsRect(bounds));
+float sk_paint_measure_text(const sk_paint_measure_text_params* parms) {
+    return AsPaint(parms->cpaint)->measureText(parms->text, parms->length, AsRect(parms->cbounds));
 }
 
 sk_path_t* sk_paint_get_text_path(float x, float y, sk_paint_t* cpaint, const void* text, size_t length) {
@@ -222,8 +222,8 @@ sk_path_t* sk_paint_get_pos_text_path(sk_paint_t* cpaint, const void* text, size
     return ToPath(path);
 }
 
-float sk_paint_get_fontmetrics(sk_paint_t* cpaint, sk_fontmetrics_t* cfontmetrics, float scale) {
-    return AsPaint(cpaint)->getFontMetrics(AsFontMetrics(cfontmetrics), scale);
+float sk_paint_get_fontmetrics(const sk_paint_get_fontmetrics_params* p) {
+    return AsPaint(p->cpaint)->getFontMetrics(AsFontMetrics(p->cfontmetrics), p->scale);
 }
 
 sk_path_effect_t* sk_paint_get_path_effect(sk_paint_t* cpaint) {

@@ -14,6 +14,16 @@
 
 SK_C_PLUS_PLUS_BEGIN_GUARD
 
+/*
+Custom parameter structure to work around the limited set of available
+parameters in the m2n generation.
+*/
+typedef struct {
+    sk_matrix44_t* matrix;
+    int row;
+    int col;
+} sk_matrix44_get_params;
+
 
 SK_API bool sk_matrix_try_invert (sk_matrix_t *matrix, sk_matrix_t *result);
 SK_API void sk_matrix_concat (sk_matrix_t *result, sk_matrix_t *first, sk_matrix_t *second);
@@ -53,7 +63,7 @@ SK_API bool sk_matrix44_equals (sk_matrix44_t* matrix, const sk_matrix44_t* othe
 SK_API void sk_matrix44_to_matrix (sk_matrix44_t* matrix, sk_matrix_t* dst);
 SK_API sk_matrix44_type_mask_t sk_matrix44_get_type (sk_matrix44_t* matrix);
 SK_API void sk_matrix44_set_identity (sk_matrix44_t* matrix);
-SK_API float sk_matrix44_get (sk_matrix44_t* matrix, int row, int col);
+SK_API float sk_matrix44_get(const sk_matrix44_get_params* params);
 SK_API void* sk_matrix44_set (sk_matrix44_t* matrix, int row, int col, float value);
 SK_API void sk_matrix44_as_col_major (sk_matrix44_t* matrix, float* dst);
 SK_API void sk_matrix44_as_row_major (sk_matrix44_t* matrix, float* dst);
