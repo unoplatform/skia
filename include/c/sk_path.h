@@ -58,7 +58,7 @@ SK_API void sk_path_add_rrect(sk_path_t*, const sk_rrect_t*, sk_path_direction_t
 SK_API void sk_path_add_rrect_start(sk_path_t*, const sk_rrect_t*, sk_path_direction_t, uint32_t);
 SK_API void sk_path_add_rounded_rect(sk_path_t*, const sk_rect_t*, float, float, sk_path_direction_t);
 SK_API void sk_path_add_oval(sk_path_t*, const sk_rect_t*, sk_path_direction_t);
-SK_API void sk_path_add_circle(sk_path_t*, float x, float y, float radius, sk_path_direction_t dir);
+SK_API int sk_path_add_circle(sk_path_t*, float x, float y, float radius, sk_path_direction_t dir);
 SK_API void sk_path_get_bounds(const sk_path_t*, sk_rect_t*);
 SK_API void sk_path_compute_tight_bounds(const sk_path_t*, sk_rect_t*);
 SK_API void sk_path_rmove_to(sk_path_t*, float dx, float dy);

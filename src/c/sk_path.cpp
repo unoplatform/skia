@@ -196,8 +196,9 @@ void sk_path_add_oval(sk_path_t* cpath, const sk_rect_t* crect, sk_path_directio
     AsPath(cpath)->addOval(*AsRect(crect), (SkPath::Direction)cdir);
 }
 
-void sk_path_add_circle(sk_path_t* cpath, float x, float y, float radius, sk_path_direction_t dir) {
+int sk_path_add_circle(sk_path_t* cpath, float x, float y, float radius, sk_path_direction_t dir) {
     AsPath(cpath)->addCircle(x, y, radius, (SkPath::Direction)dir);
+    return 0;
 }
 
 void sk_path_get_bounds(const sk_path_t* cpath, sk_rect_t* crect) {
