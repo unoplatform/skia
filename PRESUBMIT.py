@@ -91,6 +91,8 @@ def _PythonChecks(input_api, output_api):
   blacklist.extend(input_api.DEFAULT_BLACK_LIST)
 
   pylint_disabled_warnings = (
+      'E0602',  # Undefined variable %r
+      'W0201',  # Attribute %r defined outside __init__
       'F0401',  # Unable to import.
       'E0611',  # No name in module.
       'W0232',  # Class has no __init__ method.
