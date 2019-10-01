@@ -33,28 +33,28 @@ SK_API void sk_memorystream_destroy(sk_stream_memorystream_t* cstream);
 
 ////////////////////////////////////////////////////////////////////////////////
 
-SK_C_API size_t sk_stream_read(sk_stream_t* cstream, void* buffer, size_t size);
-SK_C_API size_t sk_stream_peek(sk_stream_t* cstream, void* buffer, size_t size);
-SK_C_API size_t sk_stream_skip(sk_stream_t* cstream, size_t size);
-SK_C_API bool sk_stream_is_at_end(sk_stream_t* cstream);
-SK_C_API bool sk_stream_read_s8(sk_stream_t* cstream, int8_t* buffer);
-SK_C_API bool sk_stream_read_s16(sk_stream_t* cstream, int16_t* buffer);
-SK_C_API bool sk_stream_read_s32(sk_stream_t* cstream, int32_t* buffer);
-SK_C_API bool sk_stream_read_u8(sk_stream_t* cstream, uint8_t* buffer);
-SK_C_API bool sk_stream_read_u16(sk_stream_t* cstream, uint16_t* buffer);
-SK_C_API bool sk_stream_read_u32(sk_stream_t* cstream, uint32_t* buffer);
-SK_C_API bool sk_stream_read_bool(sk_stream_t* cstream, bool* buffer);
-SK_C_API bool sk_stream_rewind(sk_stream_t* cstream);
-SK_C_API bool sk_stream_has_position(sk_stream_t* cstream);
-SK_C_API size_t sk_stream_get_position(sk_stream_t* cstream);
-SK_C_API bool sk_stream_seek(sk_stream_t* cstream, size_t position);
-SK_C_API bool sk_stream_move(sk_stream_t* cstream, long offset);
-SK_C_API bool sk_stream_has_length(sk_stream_t* cstream);
-SK_C_API size_t sk_stream_get_length(sk_stream_t* cstream);
-SK_C_API const void* sk_stream_get_memory_base(sk_stream_t* cstream);
-SK_C_API sk_stream_t* sk_stream_fork(sk_stream_t* cstream);
-SK_C_API sk_stream_t* sk_stream_duplicate(sk_stream_t* cstream);
-SK_C_API void sk_stream_destroy(sk_stream_t* cstream);
+SK_API size_t sk_stream_read(sk_stream_t* cstream, void* buffer, size_t size);
+SK_API size_t sk_stream_peek(sk_stream_t* cstream, void* buffer, size_t size);
+SK_API size_t sk_stream_skip(sk_stream_t* cstream, size_t size);
+SK_API bool sk_stream_is_at_end(sk_stream_t* cstream);
+SK_API bool sk_stream_read_s8(sk_stream_t* cstream, int8_t* buffer);
+SK_API bool sk_stream_read_s16(sk_stream_t* cstream, int16_t* buffer);
+SK_API bool sk_stream_read_s32(sk_stream_t* cstream, int32_t* buffer);
+SK_API bool sk_stream_read_u8(sk_stream_t* cstream, uint8_t* buffer);
+SK_API bool sk_stream_read_u16(sk_stream_t* cstream, uint16_t* buffer);
+SK_API bool sk_stream_read_u32(sk_stream_t* cstream, uint32_t* buffer);
+SK_API bool sk_stream_read_bool(sk_stream_t* cstream, bool* buffer);
+SK_API bool sk_stream_rewind(sk_stream_t* cstream);
+SK_API bool sk_stream_has_position(sk_stream_t* cstream);
+SK_API size_t sk_stream_get_position(sk_stream_t* cstream);
+SK_API bool sk_stream_seek(sk_stream_t* cstream, size_t position);
+SK_API bool sk_stream_move(sk_stream_t* cstream, long offset);
+SK_API bool sk_stream_has_length(sk_stream_t* cstream);
+SK_API size_t sk_stream_get_length(sk_stream_t* cstream);
+SK_API const void* sk_stream_get_memory_base(sk_stream_t* cstream);
+SK_API sk_stream_t* sk_stream_fork(sk_stream_t* cstream);
+SK_API sk_stream_t* sk_stream_duplicate(sk_stream_t* cstream);
+SK_API void sk_stream_destroy(sk_stream_t* cstream);
 
 ////////////////////////////////////////////////////////////////////////////////
 
