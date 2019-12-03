@@ -15,7 +15,7 @@ jobs:
 
   variables:
     NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
-    EMSCRIPTEN_VERSION: 1.39.4
+    EMSCRIPTEN_VERSION: 1.39.7
 
   pool:
     vmImage: 'ubuntu-16.04'

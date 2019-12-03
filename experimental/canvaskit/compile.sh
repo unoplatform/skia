@@ -221,6 +221,7 @@ ${EMCXX} \
     -s USE_LIBPNG=1 \
     -s WARN_UNALIGNED=0 \
     -s WASM=1 \
+    -s WASM_OBJECT_FILES=0 \
     -s LEGALIZE_JS_FFI=0 \
  	-s EXPORT_ALL=1 \
     -o $BUILD_DIR/libSkiaSharp.bc
