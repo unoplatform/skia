@@ -146,9 +146,7 @@ ${EMCXX} \
     modules/skottie/src/SkottieShapeLayer.cpp \
     modules/skottie/src/SkottieTextLayer.cpp \
     modules/skottie/src/SkottieValue.cpp \
-	~/.emscripten_cache/asmjs/ports-builds/libpng/*.o \
-	~/.emscripten_cache/asmjs/ports-builds/freetype/libfreetype.a \
-    modules/sksg/src/*.cpp \
+	modules/sksg/src/*.cpp \
     $BUILTIN_FONT \
     -s ALLOW_MEMORY_GROWTH=1 \
     -s EXPORT_NAME="CanvasKitInit" \
@@ -158,6 +156,7 @@ ${EMCXX} \
     -s NO_EXIT_RUNTIME=1 \
     -s STRICT=1 \
     -s USE_FREETYPE=1 \
+    -s USE_LIBPNG=1 \
     -s WARN_UNALIGNED=0 \
     -s WASM=1 \
 	-s SIDE_MODULE=1 \
@@ -194,8 +193,6 @@ ${EMCXX} \
     -std=c++14 \
     --pre-js $BASE_DIR/helper.js \
     --pre-js $BASE_DIR/interface.js \
-	~/.emscripten_cache/asmjs/ports-builds/libpng/*.o \
-	~/.emscripten_cache/asmjs/ports-builds/freetype/libfreetype.a \
     $BUILD_DIR/libskia.a \
     modules/skottie/src/Skottie.cpp \
     modules/skottie/src/SkottieAdapter.cpp \
