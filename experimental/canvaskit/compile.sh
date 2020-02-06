@@ -63,7 +63,8 @@ echo "Compiling bitcode"
   cxx=\"${EMCXX}\" \
   extra_cflags_cc=[\"-frtti\",\"-Wno-ignored-attributes\"] \
   extra_cflags=[\"-s\",\"USE_FREETYPE=1\",\"-s\",\"USE_LIBPNG=1\", \"-s\", \"WARN_UNALIGNED=1\",
-    \"-DIS_WEBGL=1\", \"-DSKNX_NO_SIMD\",
+    \"-DIS_WEBGL=1\", \"-DSKNX_NO_SIMD\", \"-s\", \"WASM_OBJECT_FILES=0\", \
+
     ${EXTRA_CFLAGS}
   ] \
   is_debug=false \
@@ -102,67 +103,8 @@ export EMCC_CLOSURE_ARGS="--externs $BASE_DIR/externs.js "
 
 echo "Generating final wasm"
 
-# In the context of dynamic linking, the inclusion of libpng and libfreetype
-# is forced, so that emscripten does not rely on its presence in the main module.
-# This makes the wasm file larger, but works for most scenarios.
-
 # Skottie doesn't end up in libskia and is currently not its own library
 # so we just hack in the .cpp files we need for now.
-
-# Build the wasm output for dynamic linking
-${EMCXX} \
-    $RELEASE_CONF \
-    -Iinclude/c \
-    -Iinclude/codec \
-    -Iinclude/config \
-    -Iinclude/core \
-    -Iinclude/effects \
-    -Iinclude/gpu \
-    -Iinclude/gpu/gl \
-    -Iinclude/pathops \
-    -Iinclude/private \
-    -Iinclude/utils/ \
-    -Imodules/skottie/include \
-    -Imodules/sksg/include \
-    -Isrc/core/ \
-    -Isrc/utils/ \
-    -Isrc/sfnt/ \
-    -Itools/fonts \
-    -Itools \
-    -lEGL \
-    -lGLESv2 \
-    -std=c++14 \
-    --pre-js $BASE_DIR/helper.js \
-    --pre-js $BASE_DIR/interface.js \
-    $BUILD_DIR/libskia.a \
-    modules/skottie/src/Skottie.cpp \
-    modules/skottie/src/SkottieAdapter.cpp \
-    modules/skottie/src/SkottieAnimator.cpp \
-    modules/skottie/src/SkottieJson.cpp \
-    modules/skottie/src/SkottieLayer.cpp \
-    modules/skottie/src/SkottieLayerEffect.cpp \
-    modules/skottie/src/SkottiePrecompLayer.cpp \
-    modules/skottie/src/SkottieProperty.cpp \
-    modules/skottie/src/SkottieShapeLayer.cpp \
-    modules/skottie/src/SkottieTextLayer.cpp \
-    modules/skottie/src/SkottieValue.cpp \
-	modules/sksg/src/*.cpp \
-    $BUILTIN_FONT \
-    -s ALLOW_MEMORY_GROWTH=1 \
-    -s EXPORT_NAME="CanvasKitInit" \
-    -s FORCE_FILESYSTEM=0 \
-	-s ALLOW_TABLE_GROWTH=1 \
-    -s MODULARIZE=1 \
-    -s NO_EXIT_RUNTIME=1 \
-    -s STRICT=1 \
-    -s USE_FREETYPE=1 \
-    -s USE_LIBPNG=1 \
-    -s WARN_UNALIGNED=0 \
-    -s WASM=1 \
-	-s SIDE_MODULE=1 \
-    -s LEGALIZE_JS_FFI=0 \
-    -o $BUILD_DIR/libSkiaSharp.wasm
-
 
 # Build the LLVM bitcode output
 ${EMCXX} \
@@ -217,11 +159,9 @@ ${EMCXX} \
     -s FORCE_FILESYSTEM=0 \
     -s NO_EXIT_RUNTIME=1 \
     -s STRICT=1 \
-    -s USE_FREETYPE=1 \
-    -s USE_LIBPNG=1 \
     -s WARN_UNALIGNED=0 \
     -s WASM=1 \
     -s WASM_OBJECT_FILES=0 \
     -s LEGALIZE_JS_FFI=0 \
- 	-s EXPORT_ALL=1 \
+    -r \
     -o $BUILD_DIR/libSkiaSharp.bc
