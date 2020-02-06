@@ -1,7 +1,7 @@
 resources:
   containers:
   - container: nv-bionic-wasm
-    image: nventive/wasm-build:1.4.1
+    image: nventive/wasm-build:1.5
 
 jobs:
 - job: Linux
@@ -12,7 +12,11 @@ jobs:
 
   workspace:
     clean: all
-      
+
+  variables:
+    NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+    EMSCRIPTEN_VERSION: 1.39.7
+
   pool:
     vmImage: 'ubuntu-16.04'
 
@@ -24,10 +28,13 @@ jobs:
     displayName: Install Java
 
   - bash: |
-      cd /emsdk
-      sudo ./emsdk activate sdk-1.38.31-64bit
-      sudo chmod -R 777 /emsdk
-    
+      cd ~
+      echo Installing emscripten $(EMSCRIPTEN_VERSION)
+      git clone https://github.com/emscripten-core/emsdk
+      cd ~/emsdk
+      ./emsdk install $(EMSCRIPTEN_VERSION)
+      ./emsdk activate $(EMSCRIPTEN_VERSION)
+
     displayName: 'Setup Emscripten'
 
   - bash: |
@@ -37,7 +44,7 @@ jobs:
     displayName: Sources Setup
 
   - bash: |
-     source /emsdk/emsdk_env.sh
+     source ~/emsdk/emsdk_env.sh
      experimental/canvaskit/compile.sh
 
     displayName: Package wasm
