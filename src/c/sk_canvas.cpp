@@ -47,10 +47,12 @@ void sk_canvas_draw_points(sk_canvas_t* ccanvas, sk_point_mode_t pointMode, size
 
 void* sk_canvas_draw_point(sk_canvas_t* ccanvas, const sk_paint_t* cpaint, float x, float y) {
     AsCanvas(ccanvas)->drawPoint (x, y, *AsPaint(cpaint));
+    return NULL;
 }
 
 void* sk_canvas_draw_line(sk_canvas_t* ccanvas, float x0, float y0, float x1, float y1, sk_paint_t* cpaint) {
     AsCanvas(ccanvas)->drawLine(x0, y0, x1, y1, *AsPaint(cpaint));
+    return NULL;
 }
 
 int sk_canvas_draw_text (sk_canvas_t* ccanvas, float x, float y, const char *text, size_t byteLength, const sk_paint_t* cpaint) {
@@ -182,7 +184,7 @@ void sk_canvas_draw_rrect(sk_canvas_t* ccanvas, const sk_rrect_t* crect, const s
     AsCanvas(ccanvas)->drawRRect(*AsRRect(crect), *AsPaint(cpaint));
 }
 
-void* sk_canvas_draw_circle(sk_canvas_t* ccanvas, const sk_paint_t* cpaint, float cx, float cy, float rad) {
+void* sk_canvas_draw_circle(sk_canvas_t* ccanvas, const sk_paint_t* cpaint, float cx, float cy, float rad, float unused) {
     AsCanvas(ccanvas)->drawCircle(cx, cy, rad, *AsPaint(cpaint));
     return NULL;
 }
