@@ -30,7 +30,7 @@ SK_API void sk_canvas_draw_paint(sk_canvas_t*, const sk_paint_t*);
 SK_API void sk_canvas_draw_rect(sk_canvas_t*, const sk_rect_t*, const sk_paint_t*);
 SK_API void sk_canvas_draw_rrect(sk_canvas_t*, const sk_rrect_t*, const sk_paint_t*);
 SK_API void sk_canvas_draw_region(sk_canvas_t*, const sk_region_t*, const sk_paint_t*);
-SK_API void* sk_canvas_draw_circle(sk_canvas_t*, const sk_paint_t*, float cx, float cy, float rad);
+SK_API void* sk_canvas_draw_circle(sk_canvas_t*, const sk_paint_t*, float cx, float cy, float rad, float unused);
 SK_API void sk_canvas_draw_oval(sk_canvas_t*, const sk_rect_t*, const sk_paint_t*);
 SK_API void sk_canvas_draw_path(sk_canvas_t*, const sk_path_t*, const sk_paint_t*);
 SK_API void sk_canvas_draw_image(sk_canvas_t*, const sk_image_t*, float x, float y, const sk_paint_t*);
